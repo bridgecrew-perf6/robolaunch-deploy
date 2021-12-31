@@ -21,10 +21,11 @@ Clone repository
 git clone https://github.com/robolaunch/robolaunch-deploy.git
 ```
 
-Before continues you should configure **.Values.auth.issuer** and **.Values.auth.jwksUri** paramaters in values.yaml.
+If you want to activate end-user auth you must configure **.Values.auth.issuer** and **.Values.auth.jwksUri** paramaters in values.yaml.
 
 ```yaml
 auth:
+  enable: true
   issuer: ""
   jwksUri: ""
 ```
