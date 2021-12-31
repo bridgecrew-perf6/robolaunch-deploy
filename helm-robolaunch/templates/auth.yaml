@@ -1,0 +1,26 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: {{ include "helm-robolaunch.fullname" . }}-authn
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: server
+  jwtRules:
+    - issuer: {{ .Values.auth.issuer }}
+      jwksUri: {{ .Values.auth.jwksUri }}
+      outputPayloadToHeader: x-jwt
+      forwardOriginalToken: true
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: {{ include "helm-robolaunch.fullname" . }}-authz
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: server
+  rules:
+    - from:
+        - source:
+            requestPrincipals: ["*"]
