@@ -36,6 +36,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.server.repository }}:{{ .Values.server.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.server.pullPolicy }}
+          env:
+            - name: TEMPORAL_SERVER_IP
+              value: {{ .Values.temporalServer }}
           ports:
             - name: grpc
               containerPort: 50051
