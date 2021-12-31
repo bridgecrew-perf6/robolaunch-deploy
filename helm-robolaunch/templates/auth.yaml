@@ -1,3 +1,4 @@
+{{- if .Values.ingress.enabled -}}
 apiVersion: security.istio.io/v1beta1
 kind: RequestAuthentication
 metadata:
@@ -24,3 +25,5 @@ spec:
     - from:
         - source:
             requestPrincipals: ["*"]
+{{end}}
+

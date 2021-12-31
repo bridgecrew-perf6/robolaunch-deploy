@@ -30,6 +30,7 @@ serviceAccount:
 
 podAnnotations: {}
 auth:
+  enable: false
   issuer: ""
   jwksUri: ""
 podSecurityContext:
@@ -49,6 +50,7 @@ service:
   type: ClusterIP
   port: 50051
 
+# not working yet
 ingress:
   enabled: false
   className: ""
