@@ -99,6 +99,14 @@ spec:
           env:
             - name: TEMPORAL_SERVER_IP
               value: {{ .Values.temporalServer }}
+            - name: KEYCLOAK_URL
+              value: {{ .Values.keycloak.url }}
+            - name: KEYCLOAK_ADMIN_USERNAME
+              value: {{ .Values.keycloak.username }}
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: {{ .Values.keycloak.password }}
+            - name: KEYCLOAK_REALM
+              value: {{ .Values.keycloak.realm}}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

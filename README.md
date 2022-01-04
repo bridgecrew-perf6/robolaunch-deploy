@@ -9,13 +9,23 @@
 You could reach helm chart of deployment from this page.
 [Source Code Repo](https://github.com/robolaunch/robolaunch)
 
-## Project Status
+## Prerequisite
 
-- [x] Configurable Helm chart.
+Dependencies:
+
+- Temporal + ElasticSearch
+- Istio
+
+Also you must add following `SearchAttributes` to Temporal
+
+```bash
+tctl admin cluster asa --name DeploymentName --type Keyword
+tctl admin cluster asa --name DeploymentNamespace --type Keyword
+```
 
 ## Installation
 
-Clone repository
+Clone robolaunch-deploy repository.
 
 ```bash
 git clone https://github.com/robolaunch/robolaunch-deploy.git
