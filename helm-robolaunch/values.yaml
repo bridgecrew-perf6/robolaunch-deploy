@@ -30,7 +30,7 @@ serviceAccount:
 
 podAnnotations: {}
 keycloak:
-  url: keycloak.keycloak.svc.cluster.local:8080
+  url: http://keycloak.keycloak.svc.cluster.local:8080
   realm: master
   username: admin
   password: admin
