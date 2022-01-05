@@ -5,13 +5,19 @@ temporalServer: "temporaltest-frontend.temporal.svc.cluster.local:7233"
 replicaCount: 1
 server:
   repository: robolaunchio/launch-server
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest
 
 worker:
   repository: robolaunchio/launch-worker
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: latest
+client:
+  repository: robolaunchio/robolaunch-ui
+  pullPolicy: Always
+  port: 3000
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest
 

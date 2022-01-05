@@ -16,6 +16,43 @@ spec:
     {{- include "helm-robolaunch.selectorLabels" . | nindent 4 }}
     app.kubernetes.io/component: server
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "helm-robolaunch.fullname" . }}-client
+  labels:
+    {{- include "helm-robolaunch.labels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ include "helm-robolaunch.fullname" . }}-client
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.client.port }}
+      targetPort: 3000
+      protocol: TCP
+      name: webui
+  selector:
+    {{- include "helm-robolaunch.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: robolaunch-ui
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+   name: {{ include "helm-robolaunch.fullname" . }}-client
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - {{ include "helm-robolaunch.fullname" . }}-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: {{ include "helm-robolaunch.fullname" . }}-client
+            port:
+              number: 3000
+---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
