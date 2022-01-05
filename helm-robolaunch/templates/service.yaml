@@ -28,7 +28,7 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /auth.Launch
+            prefix: /launch.Launch
       route:
         - destination:
             host: {{ include "helm-robolaunch.fullname" . }}-svc
