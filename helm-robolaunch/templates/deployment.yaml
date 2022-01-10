@@ -107,6 +107,10 @@ spec:
               value: {{ .Values.keycloak.password }}
             - name: KEYCLOAK_REALM
               value: {{ .Values.keycloak.realm}}
+            - name: KUBEAPPS_SERVER_IP
+              value: {{ .Values.launch.kubeappsUrl}}
+            - name: CHARTMUSEUM_SERVER_IP
+              value: {{ .Values.launch.chartMuseumUrl}}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

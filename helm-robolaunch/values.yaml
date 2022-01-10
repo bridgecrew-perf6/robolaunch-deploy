@@ -41,6 +41,10 @@ keycloak:
   username: admin
   password: admin
 
+launch:
+  kubeappsUrl: http://kubeapps.robolaunch-dev.svc.cluster.local:8080
+  chartMuseumUrl: http://chartmuseum.robolaunch-dev.svc.cluster.local:8080
+
 auth:
   enable: false
   issuer: ""
